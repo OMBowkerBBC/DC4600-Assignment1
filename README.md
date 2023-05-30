@@ -11,10 +11,12 @@ Some images in the report are created using plantUML. For the sake of ease I hav
 
 Some of the images are not included in the repo and can be generated using the following commands:
 
-######For a single file
+#### _For a single file_
 `java -jar plantuml.jar -verbose {file}.puml`
 
-######For all files
+#### _For all files_
 **Yes this script uses `os.system`, which is very insecure. But don't panic it's just running plantUML and was made as a quick fix to recreate all images!**
+
 `python create_images.py`
+
 `python3 create_images.py`
