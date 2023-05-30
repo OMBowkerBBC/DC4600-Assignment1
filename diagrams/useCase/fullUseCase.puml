@@ -1,0 +1,52 @@
+@startuml
+' left to right direction
+
+actor :Customer: as customer
+actor :Finance Department: as finance
+actor :Customer Service Representative: as csr
+actor :Mechanic: as mech
+actor :Payment Service: as payment
+actor :Insurance Company: as insure
+
+(Make rental request) as rentReq
+(Extend rental) as rentExt
+(Cancel rental) as rentCancel
+
+customer --> (Register)
+customer --> (Login)
+customer --> (Browse available vehicles)
+customer --> rentReq
+customer --> rentExt
+customer --> rentCancel
+customer --> (Return a car)
+customer --> (Pay for rental)
+
+finance --> (Generate earning reports)
+finance --> (Generate profit/loss statement)
+
+(Repair cars) as repair
+mech --> (Service car)
+mech --> repair
+repair ..> (Generate receipt of costs) : << include >>
+
+(Add new car) as (addCar)
+(Insure vehicle) as (insureVehicle)
+(Take phone call) as (phoneBooking)
+addCar <.. (Book MOT) : << extend >>
+addCar <.. (Tax vehicle) : << include >>
+addCar ..> insureVehicle : << include >>
+csr --> (Retrieve rental details)
+csr --> phoneBooking
+phoneBooking ..> rentReq : << include >>
+phoneBooking ..> rentExt : << include >>
+phoneBooking ..> rentCancel : << extend >> 
+csr --> addCar
+csr --> (Handle return of vehicle)
+
+insure --> insureVehicle
+
+(Validate a payment) as validatePayment
+payment --> (Take a payment)
+payment --> validatePayment
+validatePayment <.. (Send validation error) : << extend >>
+@enduml

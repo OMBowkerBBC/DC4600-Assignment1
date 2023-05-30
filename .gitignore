@@ -1,0 +1,14 @@
+.vscode
+*.docx
+/diagrams/activity/*.png
+/diagrams/sequence/*.png
+/diagrams/useCase/*.png
+
+# Latex artifacts
+*.aux
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+

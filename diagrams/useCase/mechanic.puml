@@ -1,0 +1,9 @@
+@startuml
+left to right direction
+
+actor :Mechanic: as mech
+(Repair cars) as repair
+mech --> (Service car)
+mech --> repair
+repair ..> (Generate receipt of costs) : << include >>
+@enduml

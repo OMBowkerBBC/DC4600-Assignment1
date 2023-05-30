@@ -1,0 +1,15 @@
+@startuml
+actor :Customer: as customer
+(Make rental request) as rentReq
+(Extend rental) as rentExt
+(Cancel rental) as rentCancel
+
+customer --> (Register)
+customer --> (Login)
+customer --> (Browse available vehicles)
+customer --> rentReq
+customer --> rentExt
+customer --> rentCancel
+customer --> (Return a car)
+customer --> (Pay for rental)
+@enduml

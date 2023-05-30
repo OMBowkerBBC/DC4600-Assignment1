@@ -1,0 +1,40 @@
+@startuml
+title Add customer details
+start
+:User navigates to site;
+if (Sessions exists) then (yes)
+  #LightGreen:Use stored credentials;
+  end
+else (no)
+  :Request user login/register;
+  if (Request rejected) then (yes)
+    #OrangeRed:User refuses to login/register;
+    end
+  else (no)
+    if (Has account) then (yes)
+      if (User signs in) then (yes)
+        #LightGreen:Use stored credentials;
+        end
+      else
+        #OrangeRed:User refuses to login/register;
+        end
+      endif
+    else (no)
+      :Root user to register page;
+      repeat
+        :Request user details;
+        backward:Show error message;
+      repeat while (Invalid Data) is (yes) not (no);
+
+      repeat
+        :Request drivers license information;
+        backward:Show error message;
+      repeat while (Invalid Data) is (yes) not (no);
+
+      :Store user details in data store;
+      #LightGreen:Send user success email/receipt;
+      end
+    endif
+  endif
+endif
+@enduml

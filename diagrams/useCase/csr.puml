@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+actor :Customer Service Representative: as csr
+
+(Make rental request) as rentReq
+(Extend rental) as rentExt
+(Cancel rental) as rentCancel
+(Add new car) as (addCar)
+(Insure vehicle) as (insureVehicle)
+(Take phone call) as (phoneBooking)
+
+addCar <.. (Book MOT) : << extend >>
+addCar <.. (Tax vehicle) : << include >>
+addCar ..> insureVehicle : << include >>
+csr --> (Retrieve rental details)
+csr --> phoneBooking
+phoneBooking ..> rentReq : << include >>
+phoneBooking ..> rentExt : << include >>
+phoneBooking ..> rentCancel : << extend >> 
+csr --> addCar
+csr --> (Handle return of vehicle)
+@enduml

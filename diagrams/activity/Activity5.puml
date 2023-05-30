@@ -1,0 +1,26 @@
+@startuml
+title Adding a new car to the system
+start
+:Request details about new car;
+:Calculate price range based on car specs;
+if (Car is not taxed) then (no)
+  :Request user to tax vehicle;
+  if (Request denied) then (yes)
+    :Mark car as unrentable;
+    :Send reminder to do later;
+  else (no)
+    :Direct user to DVLA site;
+  endif
+else (yes)
+endif
+
+if (Car has MOT) then (yes)
+else (no)
+  :Request user to get car MOT'd;
+  :Mark car as unrentable;
+endif
+
+#LightGreen:Persist all details to storage;
+
+end
+@enduml

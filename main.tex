@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{wrapfig}
+
+\title{ACME}
+\author{Oliver Matthew Bowker (220263618)}
+\date{\today}
+\begin{document}
+
+  \maketitle
+  \begin{center}
+    \includegraphics[width=5cm]{acme.png}
+  \end{center}
+  \newpage
+
+  \tableofcontents
+  \newpage
+
+  \listoffigures
+  \newpage
+
+  \listoftables
+  \newpage
+
+  \input{sections/introduction}
+  \input{sections/overview}
+  \input{sections/stakeholders}
+  \input{sections/requirements}
+  \input{sections/design}
+  \input{sections/conclusion}
+  \input{sections/references}
+  \input{sections/appendix}
+\end{document}

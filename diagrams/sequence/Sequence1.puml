@@ -1,0 +1,54 @@
+@startuml
+actor Customer as cus
+control System as sys
+entity CredentialsManager as creds
+entity LicenseValidator as license
+database Database as db
+entity EmailHandler as email
+
+cus -> sys : Navigate to site
+sys -> creds : Check if session exists
+sys <-- creds : Return result
+group #LightGreen Session exists [Exit]
+  sys -> sys : Use currently stored session
+end
+
+cus <-- sys : Request customer login/register
+alt #LightBlue Customer has account [loop until valid credentials]
+  cus -> sys : Provides login credentials
+  sys -> creds : Check credentials
+  sys <-- creds : Return result
+  alt #LightGreen Valid credentials [Exit]
+    sys -> sys : Use existing account credentials
+  else #Pink Invalid credentials
+    cus <-- sys : Show login error message
+  end
+else Customer does not have account
+  sys -> sys : Navigate customer to register page
+  group #LightCyan Get customer details [loop until valid details]
+    cus <-- sys : Request customer details
+    cus -> sys : Provide details
+    sys -> creds : Validate provided details
+    sys <-- creds : Return result
+    group #Pink Invalid details
+      cus <-- sys : Show error message
+    end
+  end
+
+  group #LightCyan Get customer drivers license information [loop until valid details]
+    cus <-- sys : Request drivers license information
+    cus -> sys : Provide driving license information
+    sys -> license : Request validation
+    sys <-- license : Return result
+    sys -> sys : Validate result is valid
+    group #Pink Invalid details
+      cus <-- sys : Show error message
+    end
+  end
+
+  sys -> db : Store user details in database
+  sys -> email : Request confirmation email for customer
+  cus <-- email : Send user successful sign up email
+end
+
+@enduml

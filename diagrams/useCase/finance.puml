@@ -1,0 +1,7 @@
+@startuml
+left to right direction
+
+actor :Finance Department: as finance
+finance --> (Generate earning reports)
+finance --> (Generate profit/loss statement)
+@enduml

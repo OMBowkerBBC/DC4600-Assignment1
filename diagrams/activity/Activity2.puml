@@ -1,0 +1,34 @@
+@startuml
+title Taking payment
+
+start
+:Root user to payment page/screen;
+
+repeat
+  :Show user rental/payment details;
+  if (Use Crypto) then (yes)
+    :Prompt wallet sign in;
+    :Calculate current exchange rate;
+    :Prompt user to pay/sign transaction;
+
+  else (no)
+    repeat
+      :Request card details;  
+      backward:Show error message;  
+    repeat while (Valid details) is (no) not (yes);
+  endif
+
+  :Attempt payment;
+  
+  if (Transaction successful) then (yes)
+    :Store transaction details to storage;
+    #LightGreen:Send user success email/receipt;
+    end
+  else (no)
+  endif
+  backward:Show error message;
+repeat while (Failed 3 times) is (no) not (yes);
+
+#OrangeRed:Show transaction failed message;
+end
+@enduml

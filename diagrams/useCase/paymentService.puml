@@ -1,0 +1,9 @@
+@startuml
+left to right direction
+
+actor :Payment Service: as payment
+(Validate a payment) as validatePayment
+payment --> (Take a payment)
+payment --> validatePayment
+validatePayment <.. (Send validation error) : << extend >>
+@enduml
