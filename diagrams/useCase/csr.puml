@@ -20,4 +20,5 @@ phoneBooking ..> rentExt : << include >>
 phoneBooking ..> rentCancel : << extend >> 
 csr --> addCar
 csr --> (Handle return of vehicle)
+csr --> (Start hire)
 @enduml

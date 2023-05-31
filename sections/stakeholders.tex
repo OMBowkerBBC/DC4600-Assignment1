@@ -1,8 +1,10 @@
 \section{Stakeholders and Use Cases}
-  Stakeholders introduction
+  Before writing requirements it's important to know the stakeholders of the company, as well as who will be affected by the changes that are planned.
+  In this section I will identify stakeholders, plot out some use cases using UML use case diagrams and finally talk about potential conflicts of
+  interest between stakeholders.
 
   \subsection{Identifying stakeholders}
-    Intro here
+    To help identify stakeholders I have created a viewpoint diagram that can be seen in the below figure.
     \begin{figure}[H]
       \centering
       \includegraphics[width=12cm]{diagrams/viewpoints.drawio.png}
@@ -10,11 +12,39 @@
       \label{fig:viewpoint}
     \end{figure}
 
+    I have broken down the stakeholders into 3 categories, External, Interactors and Indirect, which describe their
+    exposure to the new systems.
+
+    \vspace{0.2cm}
+
+    \noindent\textbf{External -} This group of people will not part of ACMEs staff, however do have an interest/role in the system/company. Insurance, 
+    and both stakeholders under 'Authorities' are needed for the system to function, insurance for the cars, and authorities to
+    check the details of a car and renter are valid. The payment handler, I give the example of Stripe [11] will also be a part of the system
+    but will not directly interact with it. Finally shareholders of a company always have an interest in change due to the expectation of profit.
+
+    \vspace{0.2cm}
+
+    \noindent\textbf{Interactors -} Interactors are people who will use the new system directly. I have separated these out into staff and customers.
+    Customer is separated into two smaller classes, student and non-student. I did this to reflect one of the business goals of ACME, which is to \textit{
+    cater to the student demographic}, in addition to this stakeholder potentially getting benefits due to their situation. The other branch of interactors
+    is staff. These are the people within the company who will interact with the new systems, like adding cars to the database (Customer Service Representative)
+    and being able to easily query order/financial information (Finance/Accounting).
+
+    \vspace{0.2cm}
+
+    \noindent\textbf{Indirect -} These are employees of ACME who will not directly interact with the new interfaces. Their jobs will stay the same as prior. Despite
+    this I though it a good idea to mention them as they could be the target for future upgrades to systems. In addition to this the due to the increased 
+    productivity of the new system, a mechanic may be expected to do more work, which may not be feasible.
+
   \subsection{Use case diagrams}
-    Intro here
+    Taking the above stakeholders I have created a use case diagram to show their roles in the system. I will discuss each actor individually here but a full
+    use case diagram can be seen in \hyperref[sec:AppendixB]{\textbf{Appendix B}}, including crossovers between actors.
 
     \subsubsection{Customer Service Representative}
-      Text
+      The CSR refers to the member of staff that interfaces with the customer. They will be able to do all the same activities they did before, however now using
+      the updated system. I have decided to continue to allow telephone bookings and enquiries to be made. Most likely the new system will be
+      adopted by most people, however for people who aren't comfortable with \textit{'21\% of Britain's population lack basic digital
+      skills'} [12].
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/csr.png}
@@ -23,7 +53,10 @@
       \end{figure}
 
     \subsubsection{Customer}
-      Text 
+      I put students into a more general category of customer for the sake of the use case. Although they may be able to do different actions in the future
+      that is not the current scope of this. The customer can still extend, cancel and pay for rental, as well as, of course renting and returning a car.
+      They will now also be able to login/register on the new system, meaning they will no longer have to give their details multiple times. They will also 
+      be able to browse all available cars for rental on the new system.  
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/customer.png}
@@ -32,7 +65,10 @@
       \end{figure}
     
     \subsubsection{Finance/Accounting}
-      Text
+      The finance/accounting department are responsible for generating tax information. This has been an issue in the past where
+      receipts and order details have gone missing. The new system hopes to fix this by allowing all this data to be inputted into 
+      a database. From this the department will be able generate earning reports and profits and loss statements. This help ACME 
+      towards business goal 4.
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/finance.png}
@@ -41,7 +77,8 @@
       \end{figure}
 
     \subsubsection{Insurance Company}
-      Text
+      The insurance company is an external stakeholder that ACME staff with have to interact with. They are responsible for insuring the cars and
+      are linked to the Customer Service Representative in this task.
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/insurance.png}
@@ -50,7 +87,10 @@
       \end{figure}
       
     \subsubsection{Mechanic}
-      Text
+      The mechanic is in charge of making sure the cars are suitable to rent. For this reasons a mechanic can service a car, and repair cars
+      when needed. In some cases parts will have to ordered in when repairing a car, so an optional include has been added to generate a receipt
+      for these costs. This would currently be done paper based, however this could be rolled into the new system to make all expenses/profits 
+      being in the same place, making it easier to do things such as tax returns and profit/loss accounts.
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/mechanic.png}
@@ -59,7 +99,9 @@
       \end{figure}
 
     \subsubsection{Payment Service (Stripe)}
-      Text
+      The payment service is solely responsible for handling payments. They can take a payment for an order and they can
+      validate a payment. When validating a payment there is a chance that it fails, therefore they must inform us if this
+      happens.
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/paymentService.png}

@@ -3,6 +3,7 @@
 /diagrams/activity/*.png
 /diagrams/sequence/*.png
 /diagrams/useCase/*.png
+todo
 
 # Latex artifacts
 *.aux

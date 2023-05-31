@@ -8,14 +8,14 @@ actor :Mechanic: as mech
 actor :Payment Service: as payment
 actor :Insurance Company: as insure
 
-(Make rental request) as rentReq
+(Rent car) as rentCar
 (Extend rental) as rentExt
 (Cancel rental) as rentCancel
 
 customer --> (Register)
 customer --> (Login)
 customer --> (Browse available vehicles)
-customer --> rentReq
+customer --> rentCar
 customer --> rentExt
 customer --> rentCancel
 customer --> (Return a car)
@@ -37,11 +37,12 @@ addCar <.. (Tax vehicle) : << include >>
 addCar ..> insureVehicle : << include >>
 csr --> (Retrieve rental details)
 csr --> phoneBooking
-phoneBooking ..> rentReq : << include >>
+phoneBooking ..> rentCar : << include >>
 phoneBooking ..> rentExt : << include >>
 phoneBooking ..> rentCancel : << extend >> 
 csr --> addCar
 csr --> (Handle return of vehicle)
+csr --> (Start hire)
 
 insure --> insureVehicle
 
