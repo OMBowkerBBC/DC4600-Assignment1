@@ -1,3 +1,80 @@
 \section{Requirements}
-  Requirements
+  Now we've identified our stakeholders we can start thinking about the requirements for both user and system. In this section I will first identify user
+  requirements, then dig into each outlining the functional and non-functional requirements of that user requirement.
+
+  \subsection{The system should allow users details to be stored}
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
+        \hline
+        Requirement & Type & Actors \\ \hline
+        A user should be able to input personal details (name, age, email) & Functional & Customer, CSR \\ \hline
+        The system should send a verification email to the user to stop fake accounts & Functional & Customer, CSR \\ \hline
+        A user should be able to input driving license information & Functional & Customer, CSR \\ \hline
+        The system should automatically validate drivers license information & Functional & Customer, DVLA/Authorities \\ \hline
+        A user should be able to login with previously saved details & Functional & Customer, CSR \\ \hline
+        A user should be able to access their details & Functional & Customer, CSR \\ \hline
+        A user should be able to recover there password if they forget it & Functional  & Customer \\ \hline
+        Sign up should be a one step process & Non-functional & Customer \\ \hline
+        No card details or MOT details should be stored & Non-functional & Customer, Legal \\ \hline
+      \end{tabular}
+      \caption{Table for user requirement 1.}
+    \end{table}
+
+  \subsection{The system should allow car list to be edited}
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
+        \hline
+        Requirement & Type & Actors \\ \hline
+        Should allow the addition of a new car & Functional & CSR \\ \hline
+        Should allow the editing of a car & Functional & CSR \\ \hline
+        Should allow the removal of a car & Functional & CSR \\ \hline
+        Should only allow staff to perform operations  & Non-functional & CSR \\ \hline
+      \end{tabular}
+      \caption{Table for user requirement 2.}
+    \end{table}
+
+  \subsection{The system should accept payments for rentals}
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
+        \hline
+        Requirement & Type & Actors \\ \hline
+        Should still allow in person payments & Functional & Customer, CSR \\ \hline
+        Should allow card online payments & Functional & Customer \\ \hline
+        Should allow crypto payments & Functional & Customer \\ \hline
+        All payments must be put into the new storage systems & Non-functional & Customer, CSR, Accounting/Finance \\ \hline
+      \end{tabular}
+      \caption{Table for user requirement 3.}
+    \end{table}
+
+  \subsection{The system should allow the renting of vehicles}
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
+        \hline
+        Requirement & Type & Actors \\ \hline
+        Users should be able to browse available vehicles & Functional & Customer, CSR \\ \hline
+        Vehicles can be made available/unavailable & Functional & Mechanic, CSR \\ \hline
+        Rental can be extended & Functional & Customer, CSR \\ \hline
+        The system should be able to calculate availability dates & Functional & Customer, CSR, Mechanic \\ \hline
+      \end{tabular}
+      \caption{Table for user requirement 4.}
+    \end{table}
+  
+  \subsection{Other requirements}
+    \begin{table}[H]
+      \centering
+      \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
+        \hline
+        Requirement & Type \\ \hline
+        Must use secure protocols (https/ssl) & Non-functional \\ \hline
+        The new system must be available at all times & Non-functional \\ \hline
+        Should offer 2fa for security of users & Functional \\ \hline
+        Should encrypt/hash any sensitive data stored \\ \hline
+      \end{tabular}
+      \caption{Table for other requirements.}
+    \end{table}
+
 \newpage

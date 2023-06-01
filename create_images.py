@@ -1,7 +1,7 @@
 import os, itertools
 if __name__ == "__main__":
   puml_files = []
-  for (root, _ ,files) in os.walk('./diagrams'):
+  for (root, _ ,files) in os.walk("./diagrams"):
     puml_files.append([f"{root}/{file}" for file in files if file.endswith(".puml")])
 
   # Use unpacking to flatten list of lists
