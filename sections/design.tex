@@ -4,7 +4,8 @@
   inaccuracy within the system but not a total failure.
 
   \subsection{Adding a new user}
-    Text
+    As part of adding a new user I have also modelled the login/register, I did this because without being signed in a customer
+    would not be able to rent.
 
     \begin{figure}[H]
       \centering
@@ -12,6 +13,11 @@
       \caption{Activity diagram for adding a new user, this includes sign in/up.}
       \label{fig:newUserActivity}
     \end{figure}
+
+    The above diagram shows 3 happy paths and 2 sad paths. The sad paths are the user quitting the process, however it is worth
+    noting that a user could quit the application during any stage of the process. The first happy path is when a sessions exists.
+    This points to some kind of session/cookie management in the future. The second is credentials stored in the database of an 
+    existing user.
 
     \begin{figure}[H]
       \centering
@@ -23,7 +29,6 @@
   \newpage
   
   \subsection{Taking a payment}
-    Text
 
     \begin{figure}[H]
       \centering
@@ -31,6 +36,10 @@
       \caption{Activity diagram for taking a payment.}
       \label{fig:takePaymentActivity}
     \end{figure}
+
+    Taking a payment refers to online payments. If the user fails multiple times (3) then the system should stop
+    the user from trying again, at least for a short while. This is to stop spamming and potential malicious activity.
+    This is also includes the path of paying with crypto and cards to help reach some of Aston's business goals.
 
     \begin{figure}[H]
       \centering
@@ -42,7 +51,6 @@
   \newpage
 
   \subsection{Adding a new car}
-    Text
 
     \begin{figure}[H]
       \centering
@@ -50,6 +58,10 @@
       \caption{Activity diagram for adding a new car to the system.}
       \label{fig:newCarActivity}
     \end{figure}
+
+    When adding a car a user has two optional stages, taxing the vehicle and MOT'ing the car. These are needed for the 
+    car to be rentable, however don't necessarily have to be done when adding the vehicle. However the diagram shows that
+    if these criteria are not met the car is marked as unrentable until they have been fulfilled.
 
     \begin{figure}[H]
       \centering
