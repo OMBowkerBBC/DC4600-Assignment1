@@ -25,6 +25,10 @@
       \caption{Sequence diagram for adding a new user, this includes sign in/up.}
       \label{fig:newUserSequence}
     \end{figure}
+
+    In the above sequence diagram a user can technically exit the login/register process at any stage, however I did not map this in the 
+    diagram as every stage would become bloated. Both EmailHandler and CredentialsManager would be module of
+    the system, however I have separated them for more clarity. License validator would be an external API Call. 
   
   \newpage
   
@@ -48,6 +52,11 @@
       \label{fig:takePaymentSequence}
     \end{figure}
 
+    The user navigates to the payment screen and is shown details about rental by th UI. Then the system consistently
+    loops to get the user payment. This broken when the payment succeeds or the systems payment failure
+    limit is reached (shown in the dark red). This diagram introduces the CryptoWallet entity which the system will have
+    to interact with if it wants to accept cryptocurrency payments.
+
   \newpage
 
   \subsection{Adding a new car}
@@ -69,4 +78,11 @@
       \caption{Sequence diagram for adding a new car to the system.}
       \label{fig:newCarSequence}
     \end{figure}
+
+    The actors/entities in this diagram are similar to the first. In this case however I have a boundary (UI) that controls
+    what the users is presented with. The DVLA in this case would be some sort of API call, or potentially a physical call a
+    member of staff has to make. For the sake of ease in this case I have modelled it as an API to check both 
+    tax and MOT status of the vehicle. The car is marked as unrentable if either of these cases are not fulfilled and that
+    would be a simple flag in the database.
+
 \newpage

@@ -7,42 +7,45 @@ entity PaymentProvider as payment
 database Database as db
 entity EmailHandler as email
 
-cus -> ui : 1. Navigates to payment screen
-cus <-- ui : 2. Show rental/payment details
-alt #LightBlue Pay with crypto
-  sys -> wallet : Connect to wallet provider
-  cus <-- wallet : Prompt wallet sign in
-  sys -> sys : Calculate exchange rate
-  cus <-- wallet : Prompt user to pay/sign transaction
-  cus -> wallet : Pay/sign transaction
-  cus <-- wallet : Return payment result
-else Pay with card
-  group #LightCyan Get card details [loop until valid card details]
-    cus <-- ui : Request card details
-    cus -> sys : Input card details
-    sys -> sys : Check card details
-    group #Pink Invalid details
+cus -> ui : Navigates to payment screen
+cus <-- ui : Show rental/payment details
+
+group #LightBlue Get user payment [loop]
+  alt #LightCyan Pay with crypto
+    sys -> wallet : Connect to wallet provider
+    cus <-- wallet : Prompt wallet sign in
+    sys -> sys : Calculate exchange rate
+    cus <-- wallet : Prompt user to pay/sign transaction
+    cus -> wallet : Pay/sign transaction
+    cus <-- wallet : Return payment result
+  else Pay with card
+    group #LightBlue Get card details [loop until valid card details]
+      cus <-- ui : Request card details
+      cus -> sys : Input card details
+      sys -> sys : Check card details
+      group #Pink Invalid details
+        cus <-- ui : Show error message
+      end
+    end
+
+    sys -> payment : Attempt payment
+    sys <-- payment : Return payment result
+  end
+
+  sys -> sys : Validate payment result
+
+  alt #LightCyan Payment failed
+    sys -> sys : Check if payment has failed 3 times
+    alt #OrangeRed Payment failure limit reached [Exit] 
+      cus <-- ui : Show transaction failed message 
+    else #Pink
       cus <-- ui : Show error message
     end
+
+  else #LightGreen Payment success
+    sys -> db : Store rental details to storage
+    sys -> email : Request email/receipt for customer
+    cus <-- email : Send email/receipt
   end
-
-  sys -> payment : Attempt payment
-  sys <-- payment : Return payment result
-end
-
-sys -> sys : Validate payment result
-
-alt #Yellow Payment failed
-  sys -> sys : Check if payment has failed 3 times
-  alt #OrangeRed Payment failure limit reached [Exit] 
-    cus <-- ui : Show transaction failed message 
-  else #Pink
-    cus <-- ui : Show error message
-  end
-
-else #LightGreen Payment success
-  sys -> db : Store rental details to storage
-  sys -> email : Request email/receipt for customer
-  cus <-- email : Send email/receipt
 end
 @enduml

@@ -7,13 +7,13 @@ database Database as db
 entity EmailHandler as email
 actor Mechanic as mech
 
-csi -> ui : 1. Navigates to add new car screen
-csi <-- ui : 2. Request details about new car
-csi -> sys : 3. User inputs details
+csi -> ui : Navigates to add new car screen
+csi <-- ui : Request details about new car
+csi -> sys : User inputs details
 
-sys -> sys : 4. Calculate rental price based on car details
-sys -> dvla : 5. Request car tax info
-sys <-- dvla : 6. Return information on cars tax
+sys -> sys : Calculate rental price based on car details
+sys -> dvla : Request car tax info
+sys <-- dvla : Return information on cars tax
 
 group #LightBlue Car is not taxed
   csi <-- ui : Request user to tax vehicle
@@ -27,12 +27,12 @@ group #LightBlue Car is not taxed
   end
 end
 
-sys -> dvla : 7. Request MOT information
-sys <-- dvla : 8. Return car MOT information
+sys -> dvla : Request MOT information
+sys <-- dvla : Return car MOT information
 group #LightBlue Car is not MOT'd
   csi <-- ui : Request user to get car MOT'd
   csi -> mech : Send message to mechanic to MOT car
   sys -> db : Mark car as unrentable
 end
-sys -> db : 9. Persist all details to storage
+sys -> db : Persist all details to storage
 @enduml
