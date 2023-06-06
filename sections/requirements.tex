@@ -4,6 +4,7 @@
   Then dig into each outlining the functional and non-functional requirements of that user requirement.
 
   \subsection{The system should allow users details to be stored}
+  These requirements fulfill feature - \textbf{Adding customer information}.
     \begin{table}[H]
       \centering
       \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
@@ -23,6 +24,7 @@
     \end{table}
 
   \subsection{The system should allow car list to be edited}
+  These Requirements fulfill feature - \textbf{Adding a new car to the system}.
     \begin{table}[H]
       \centering
       \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
@@ -37,6 +39,7 @@
     \end{table}
 
   \subsection{The system should accept payments for rentals}
+  These Requirements fulfill feature - \textbf{Taking Payment}.
     \begin{table}[H]
       \centering
       \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
@@ -51,13 +54,15 @@
     \end{table}
 
   \subsection{The system should allow the renting of vehicles}
+  These Requirements fulfill feature - \textbf{Handling the return of a vehicle and Starting a new hire}. A user starting and returning a vehicle, system wise,
+  is modelled by a member of staff changing the status of the vehicle on the system.
     \begin{table}[H]
       \centering
       \begin{tabular}{|p{0.6\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|}
         \hline
         Requirement & Type & Actors \\ \hline
         Users should be able to browse available vehicles & Functional & Customer, CSR \\ \hline
-        Vehicles can be made available/unavailable & Functional & Mechanic, CSR \\ \hline
+        Vehicles can have their status updated available/unavailable/rented & Functional & Mechanic, CSR \\ \hline
         Rental can be extended & Functional & Customer, CSR \\ \hline
         The system should be able to calculate availability dates & Functional & Customer, CSR, Mechanic \\ \hline
       \end{tabular}
@@ -72,7 +77,7 @@
         Requirement & Type \\ \hline
         Must use secure protocols (https/ssl) & Non-functional \\ \hline
         The new system must be available at all times & Non-functional \\ \hline
-        Should offer 2fa for security of users & Functional \\ \hline
+        Should offer 2fa for security of users & Non-Functional \\ \hline
         Should encrypt/hash any sensitive data stored & Non-functional \\ \hline
       \end{tabular}
       \caption{Table for other requirements.}

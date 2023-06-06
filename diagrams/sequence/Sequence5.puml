@@ -1,14 +1,13 @@
 @startuml
 actor CSI as csi
-boundary UI as ui
 control System as sys
 actor DVLA as dvla
 database Database as db
 entity EmailHandler as email
 actor Mechanic as mech
 
-csi -> ui : Navigates to add new car screen
-csi <-- ui : Request details about new car
+csi -> sys : Navigates to add new car screen
+csi <-- sys : Request details about new car
 csi -> sys : User inputs details
 
 sys -> sys : Calculate rental price based on car details
@@ -16,7 +15,7 @@ sys -> dvla : Request car tax info
 sys <-- dvla : Return information on cars tax
 
 group #LightBlue Car is not taxed
-  csi <-- ui : Request user to tax vehicle
+  csi <-- sys : Request user to tax vehicle
   alt #Yellow Request denied
     sys -> db : Mark car as unrentable
     sys -> email : Request reminder to be sent
@@ -30,7 +29,7 @@ end
 sys -> dvla : Request MOT information
 sys <-- dvla : Return car MOT information
 group #LightBlue Car is not MOT'd
-  csi <-- ui : Request user to get car MOT'd
+  csi <-- sys : Request user to get car MOT'd
   csi -> mech : Send message to mechanic to MOT car
   sys -> db : Mark car as unrentable
 end

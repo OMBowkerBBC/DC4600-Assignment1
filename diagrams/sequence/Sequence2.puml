@@ -1,14 +1,13 @@
 @startuml
 actor Customer as cus
-boundary UI as ui
 control System as sys
 entity CryptoWallet as wallet
 entity PaymentProvider as payment
 database Database as db
 entity EmailHandler as email
 
-cus -> ui : Navigates to payment screen
-cus <-- ui : Show rental/payment details
+cus -> sys : Navigates to payment screen
+cus <-- sys : Show rental/payment details
 
 group #LightBlue Get user payment [loop]
   alt #LightCyan Pay with crypto
@@ -20,11 +19,11 @@ group #LightBlue Get user payment [loop]
     cus <-- wallet : Return payment result
   else Pay with card
     group #LightBlue Get card details [loop until valid card details]
-      cus <-- ui : Request card details
+      cus <-- sys : Request card details
       cus -> sys : Input card details
       sys -> sys : Check card details
       group #Pink Invalid details
-        cus <-- ui : Show error message
+        cus <-- sys : Show error message
       end
     end
 
@@ -37,9 +36,9 @@ group #LightBlue Get user payment [loop]
   alt #LightCyan Payment failed
     sys -> sys : Check if payment has failed 3 times
     alt #OrangeRed Payment failure limit reached [Exit] 
-      cus <-- ui : Show transaction failed message 
+      cus <-- sys : Show transaction failed message 
     else #Pink
-      cus <-- ui : Show error message
+      cus <-- sys : Show error message
     end
 
   else #LightGreen Payment success

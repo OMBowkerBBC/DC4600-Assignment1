@@ -1,0 +1,20 @@
+@startuml
+title Handling the return of a vehicle
+start
+  :Customer returns vehicle to lot;
+  :Store keys in safe;
+  :Request mechanic to check the vehicle;
+  if (Car has problems) then (yes)
+    :Order parts;
+    :Generate receipt of costs;
+    if (Customer purchased insurance) then (no)
+      :Notify customer of damage costs;
+    else (yes)
+    endif
+    #OrangeRed:Mark car as unavailable;
+    end
+  else (no)
+    #LightGreen:Mark car as available;
+    end
+  endif
+@enduml

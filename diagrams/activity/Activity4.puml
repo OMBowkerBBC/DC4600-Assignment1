@@ -1,0 +1,29 @@
+@startuml
+title Starting a new hire
+
+start
+  :Customer comes to the lot;
+  :Check customers booking details;
+  if (Valid booking) then (yes)
+  else (no)
+    :Offer customer choice of vehicles;
+    if (Customer wants a rental) then (yes)
+      :Take payment;
+      :Input rental details;
+    else (no)
+      #OrangeRed:Customer leaves with no rental;
+      end
+    endif
+  endif
+
+  :Mark car as rented;
+
+  if (Customer purchases insurance) then (yes)
+    :Take insurance payment;
+    :Put details into database;
+  else (no)
+  endif
+
+  #LightGreen:Hand over vehicle keys;
+end
+@enduml
