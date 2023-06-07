@@ -1,36 +1,36 @@
 @startuml
-actor CSI as csi
+actor CSR as csr
 control System as sys
 actor DVLA as dvla
 database Database as db
 entity EmailHandler as email
 actor Mechanic as mech
 
-csi -> sys : Navigates to add new car screen
-csi <-- sys : Request details about new car
-csi -> sys : User inputs details
+csr -> sys : Navigates to add new car screen
+csr <-- sys : Request details about new car
+csr -> sys : User inputs details
 
 sys -> sys : Calculate rental price based on car details
 sys -> dvla : Request car tax info
 sys <-- dvla : Return information on cars tax
 
 group #LightBlue Car is not taxed
-  csi <-- sys : Request user to tax vehicle
+  csr <-- sys : Request user to tax vehicle
   alt #Yellow Request denied
     sys -> db : Mark car as unrentable
     sys -> email : Request reminder to be sent
-    csi <-- email : Send user email reminder
+    csr <-- email : Send user email reminder
   else #LightGreen Request accepted
     sys -> dvla : Direct user to DVLA
-    csi -> dvla : Tax vehicle
+    csr -> dvla : Tax vehicle
   end
 end
 
 sys -> dvla : Request MOT information
 sys <-- dvla : Return car MOT information
 group #LightBlue Car is not MOT'd
-  csi <-- sys : Request user to get car MOT'd
-  csi -> mech : Send message to mechanic to MOT car
+  csr <-- sys : Request user to get car MOT'd
+  csr -> mech : Send message to mechanic to MOT car
   sys -> db : Mark car as unrentable
 end
 sys -> db : Persist all details to storage

@@ -8,6 +8,8 @@
       \caption{SDLC with 7 phases [5]}
       \label{fig:SDLC7}
     \end{figure}
+  
+  \newpage
 
   \begin{landscape}
     \label{sec:AppendixB}
@@ -19,3 +21,63 @@
         \label{fig:UCfull}
       \end{figure}
   \end{landscape}
+  \newpage
+
+  \subsection{Appendix C - Diagram descriptions}
+    \label{sec:AppendixC}
+
+    \subsubsection{Adding customer information}
+      \textbf{Activity -} The diagram shows 3 happy paths and 2 sad paths. The sad paths are the user quitting the process, however it is worth
+      noting that a user could quit the application during any stage of the process. The first happy path is when a sessions exists.
+      This points to some kind of session/cookie management in the future. The second is credentials stored in the database of an 
+      existing user.
+
+      \noindent\textbf{Sequence -} In the sequence diagram a user can technically exit the login/register process at any stage, however I did not map this in the 
+      diagram as every stage would become bloated. Both EmailHandler and CredentialsManager would be module of the system, however I have separated them for 
+      more clarity. License validator would be an external API Call. 
+
+    \subsubsection{Taking payment}
+      \textbf{Activity -} Taking a payment refers to online payments. If the user fails multiple times (3) then the system should stop
+      the user from trying again, at least for a short while. This is to stop spamming and potential malicious activity.
+      This is also includes the path of paying with crypto and cards to help reach some of Aston's business goals.
+
+      \noindent\textbf{Sequence -} The user navigates to the payment screen and is shown details about rental by th UI. Then the system consistently
+      loops to get the user payment. This is broken when the payment succeeds or the systems payment failure limit is reached (shown in the dark red). 
+      This diagram introduces the CryptoWallet entity which the system will have to interact with if it wants to accept cryptocurrency payments.
+
+    \subsubsection{Handling the return of a vehicle}
+      \textbf{Activity -} If the user returns the car with no issues then this process is very simple and the car is marked as available for other 
+      customers to rent. If the car does have problems, and the customer doesn't have accidental damage cover, then they will be charged for the 
+      damages to the vehicle. I have marked this path as red, as it is not the ideal path, however technically the vehicle has been returned.
+
+      \noindent\textbf{Sequence -} The sequence diagrams shows how staff communicate in person as well as what the system does. The keys are stored
+      in a safe on the car lot premises for security. The mechanic checks the vehicle for issues on return, order parts from a supplier and generates 
+      a receipt of costs if needed. The system in this case is mainly used to store data in the new database, and send a receipt to the customer at the 
+      end if there was any damages they need to pay for.
+
+    \subsubsection{Starting new hire}
+      \textbf{Activity -} When a starting a hire the customer must be at the car lot. I have modelled a situation where the customer does not have
+      a valid rental and they can then be offered an in person choice of available vehicles. This will help capture people who just walk in ad hoc,
+      and help accommodate a different sales path. I have also added a path where the customer can purchase damage cover. This would cover the
+      individual if they were in an accident that was partly their doing, so standard insurance wouldn't cover it. However this is not required to 
+      start a hire.
+
+      \noindent\textbf{Sequence -} The sequence diagram follows the activity diagram closely. The system communicates with the database and payment
+      provider to achieve the desired outcome. Note that I have not fully modelled customer payment transactions as that was already done in the
+      \hyperref[sec:design:payment]{\textbf{Taking Payment}} section of this report. There is one fail case and that is if the customer does not have
+      a valid rental and does not wish to rent any vehicles that are available.
+
+    \subsubsection{Adding new car to the system}
+      \textbf{Activity -} When adding a car a user has two optional stages, taxing the vehicle and MOT'ing the car. These are needed for the 
+      car to be rentable, however don't necessarily have to be done when adding the vehicle. However the diagram shows that if these criteria are not 
+      met the car is marked as unrentable until they have been fulfilled.
+
+      \noindent\textbf{Sequence -} The actors/entities in this diagram are similar to the first. The DVLA in this case would be some sort of API call, 
+      or potentially a physical call a member of staff has to make. For the sake of ease in this case I have modelled it as an API to check both tax and 
+      MOT status of the vehicle. The car is marked as unrentable if either of these cases are not fulfilled and that would be a simple flag in the database.
+  
+  \newpage
+
+  \subsection{Appendix D - Word count}
+    \label{sec:AppendixD}
+    Word count \textbf{(Number Here)} - includes removal of captions, contents, list of figures/tables, references and appendix.

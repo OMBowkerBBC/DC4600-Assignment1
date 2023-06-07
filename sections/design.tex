@@ -1,7 +1,7 @@
 \section{Design}
   In this section I have designed activity and sequence diagrams for some of the proposed changes. I have colour coded where possible to show
   errors/failures and bad routes, tending to be in red, successful routes in green, and the yellow which signifies a potential error, or
-  inaccuracy within the system but not a total failure.
+  inaccuracy within the system but not a total failure. Extra information for diagrams can be found in \hyperref[sec:AppendixC]{\textbf{Appendix C}}.
 
   \subsection{Adding a new user}
     As part of adding a new user I have also modelled the login/register, I did this because without being signed in a customer
@@ -14,36 +14,24 @@
       \label{fig:newUserActivity}
     \end{figure}
 
-    The above diagram shows 3 happy paths and 2 sad paths. The sad paths are the user quitting the process, however it is worth
-    noting that a user could quit the application during any stage of the process. The first happy path is when a sessions exists.
-    This points to some kind of session/cookie management in the future. The second is credentials stored in the database of an 
-    existing user.
-
     \begin{figure}[H]
       \centering
       \includegraphics[width=12cm]{diagrams/sequence/Sequence1.png}
       \caption{Sequence diagram for adding a new user, this includes sign in/up.}
       \label{fig:newUserSequence}
     \end{figure}
-
-    In the above sequence diagram a user can technically exit the login/register process at any stage, however I did not map this in the 
-    diagram as every stage would become bloated. Both EmailHandler and CredentialsManager would be module of
-    the system, however I have separated them for more clarity. License validator would be an external API Call. 
   
   \newpage
   
   \subsection{Taking a payment}
-
+  \label{sec:design:payment}
+  
     \begin{figure}[H]
       \centering
       \includegraphics[width=12cm]{diagrams/activity/Activity2.png}
       \caption{Activity diagram for taking a payment.}
       \label{fig:takePaymentActivity}
     \end{figure}
-
-    Taking a payment refers to online payments. If the user fails multiple times (3) then the system should stop
-    the user from trying again, at least for a short while. This is to stop spamming and potential malicious activity.
-    This is also includes the path of paying with crypto and cards to help reach some of Aston's business goals.
 
     \begin{figure}[H]
       \centering
@@ -52,11 +40,38 @@
       \label{fig:takePaymentSequence}
     \end{figure}
 
-    The user navigates to the payment screen and is shown details about rental by th UI. Then the system consistently
-    loops to get the user payment. This broken when the payment succeeds or the systems payment failure
-    limit is reached (shown in the dark red). This diagram introduces the CryptoWallet entity which the system will have
-    to interact with if it wants to accept cryptocurrency payments.
+  \newpage
 
+  \subsection{Handling the return of a vehicle}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=6cm]{diagrams/activity/Activity3.png}
+      \caption{Activity diagram for handling the return of a vehicle.}
+      \label{fig:vehicleReturnActivity}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=12cm]{diagrams/sequence/Sequence3.png}
+      \caption{Sequence diagram for handling the return of a vehicle.}
+      \label{fig:vehicleReturnSequence}
+    \end{figure}
+  \newpage
+
+  \subsection{Starting a new hire}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=6cm]{diagrams/activity/Activity4.png}
+      \caption{Activity diagram for starting a new hire.}
+      \label{fig:hireStartActivity}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=12cm]{diagrams/sequence/Sequence4.png}
+      \caption{Sequence diagram for starting a new hire.}
+      \label{fig:startHireSequence}
+    \end{figure}
   \newpage
 
   \subsection{Adding a new car}
@@ -68,21 +83,11 @@
       \label{fig:newCarActivity}
     \end{figure}
 
-    When adding a car a user has two optional stages, taxing the vehicle and MOT'ing the car. These are needed for the 
-    car to be rentable, however don't necessarily have to be done when adding the vehicle. However the diagram shows that
-    if these criteria are not met the car is marked as unrentable until they have been fulfilled.
-
     \begin{figure}[H]
       \centering
       \includegraphics[width=12cm]{diagrams/sequence/Sequence5.png}
       \caption{Sequence diagram for adding a new car to the system.}
       \label{fig:newCarSequence}
     \end{figure}
-
-    The actors/entities in this diagram are similar to the first. In this case however I have a boundary (UI) that controls
-    what the users is presented with. The DVLA in this case would be some sort of API call, or potentially a physical call a
-    member of staff has to make. For the sake of ease in this case I have modelled it as an API to check both 
-    tax and MOT status of the vehicle. The car is marked as unrentable if either of these cases are not fulfilled and that
-    would be a simple flag in the database.
 
 \newpage

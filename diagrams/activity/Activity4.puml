@@ -6,7 +6,7 @@ start
   :Check customers booking details;
   if (Valid booking) then (yes)
   else (no)
-    :Offer customer choice of vehicles;
+    :Offer customer choice of available vehicles;
     if (Customer wants a rental) then (yes)
       :Take payment;
       :Input rental details;
@@ -18,8 +18,8 @@ start
 
   :Mark car as rented;
 
-  if (Customer purchases insurance) then (yes)
-    :Take insurance payment;
+  if (Customer purchases damage cover) then (yes)
+    :Take cover payment;
     :Put details into database;
   else (no)
   endif

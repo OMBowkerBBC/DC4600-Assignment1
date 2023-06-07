@@ -1,0 +1,32 @@
+@startuml
+actor Customer as cus
+actor CSR as csr
+actor Mechanic as mech
+actor CarParts as parts
+control System as sys
+database Database as db
+entity EmailHandler as email
+
+cus -> csr : Returns vehicle/keys
+csr -> csr : Put keys in safe
+csr -> mech : Request check on returned vehicle
+group #LightBlue Car has problems [Alternate Path]
+  mech -> parts : Order repair parts
+  mech -> mech : Generate receipt of costs
+  csr <-- mech : Send receipt of costs
+  csr -> sys : Input repair costs
+  sys -> db: Store repair costs
+  csr -> sys : Request check on customer damage cover
+  sys -> sys : Check rental damage cover details
+  group #Pink Customer did not purchase damage cover
+    sys -> email : Request invoice to be sent to customer
+    cus <-- email : Send customer invoice
+  end
+
+  csr -> sys : Update car availability status
+  sys -> db : Mark car as unavailable [Exit]
+end
+
+csr -> sys : Update car availability status
+sys -> db : Mark car as available
+@enduml

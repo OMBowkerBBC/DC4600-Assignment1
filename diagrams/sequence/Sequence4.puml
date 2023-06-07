@@ -1,0 +1,33 @@
+@startuml
+  actor Customer as cus
+  actor CSR as csr
+  control System as sys
+  database Database as db
+  entity PaymentProvider as payment
+
+  cus <- cus : Customer comes to lot
+  csr -> sys : Request check on customer booking
+  sys -> sys : Check customer has valid booking
+  group #LightBlue Customer does not have valid booking
+    cus <- csr : Offer customer choice of available vehicles
+    alt #LightCyan Customer still wants a rental
+      cus -> csr : Give payment details
+      csr -> sys : Input rental details
+      sys -> db : Store rental details
+      sys -> payment : Request transaction
+    else #Pink Customer does not want a rental [Exit]
+      cus -> cus : Customer leaves without renting
+    end
+  end
+
+  csr -> sys : Update car availability status
+  sys -> db : Mark car as rented
+
+  group #LightBlue Customer buys damage cover
+    csr -> sys : Input cover details
+    sys -> db : Store cover details
+    sys -> payment : Request transaction
+  end 
+
+  cus <- csr : Hand over vehicle keys
+@enduml

@@ -7,7 +7,7 @@ start
   if (Car has problems) then (yes)
     :Order parts;
     :Generate receipt of costs;
-    if (Customer purchased insurance) then (no)
+    if (Customer purchased damage cover) then (no)
       :Notify customer of damage costs;
     else (yes)
     endif
