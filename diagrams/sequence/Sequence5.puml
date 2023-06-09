@@ -16,7 +16,7 @@ sys <-- dvla : Return information on cars tax
 
 group #LightBlue Car is not taxed
   csr <-- sys : Request user to tax vehicle
-  alt #Yellow Request denied
+  alt #LightCyan Request denied
     sys -> db : Mark car as unrentable
     sys -> email : Request reminder to be sent
     csr <-- email : Send user email reminder

@@ -1,7 +1,5 @@
 \section{Stakeholders and Use Cases}
   Before writing requirements it's important to know the stakeholders of the company, as well as who will be affected by the changes that are planned.
-  To help me do this I will primarily use use case diagrams as \textit{'They describe a system's requirements strictly from the outside looking in;
-  they specify the value that the system delivers to users'} [14].
 
   \subsection{Identifying stakeholders}
     To help identify stakeholders I have created a viewpoint diagram that can be seen in the below figure.
@@ -37,14 +35,15 @@
     productivity of the new system, a mechanic may be expected to do more work, which may not be feasible.
 
   \subsection{Use case diagrams}
-    Taking the above stakeholders I have created a use case diagram to show their roles in the system. I will discuss each actor individually here but a full
+    Taking the above stakeholders I have created a use case diagram to \textit{'describe a system's requirements strictly from the outside looking in;
+    they specify the value that the system delivers to users'} [14]. I will discuss each actor individually here but a full
     use case diagram can be seen in \hyperref[sec:AppendixB]{\textbf{Appendix B}}, including crossovers between actors.
 
     \subsubsection{Customer Service Representative}
-      The CSR refers to the member of staff that interfaces with the customer. They will be able to do all the same activities they did before, however now using
-      the updated system. I have decided to continue to allow telephone bookings and enquiries to be made. Most likely the new system will be
-      adopted by most people, however for people who aren't comfortable with \textit{'21\% of Britain's population lack basic digital
-      skills'} [16].
+      The CSR refers to the member of staff that interfaces with the customer. They will be able to do all the same activities they did before, now using
+      the updated system. I have decided to continue to allow telephone bookings and enquiries to be made. Hopefully the new system will be
+      adopted by most people, however for people who aren't comfortable with it still have this option as  
+      \textit{'21\% of Britain's population lack basic digital skills'} [16].
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/csr.png}
@@ -53,8 +52,8 @@
       \end{figure}
 
     \subsubsection{Customer}
-      I put students into a more general category of customer for the sake of the use case. Although they may be able to do different actions in the future
-      that is not the current scope of this. The customer can still extend, cancel and pay for rental, as well as, of course renting and returning a car.
+      I merged students into a more general category of customer, although they may be able to do different actions in the future that is not the current 
+      scope of the changes. The customer can still extend, cancel and pay for rentals, as well as of course renting and returning a car.
       They will now also be able to login/register on the new system, meaning they will no longer have to give their details multiple times. They will also 
       be able to browse all available cars for rental on the new system.  
       \begin{figure}[H]
@@ -67,8 +66,7 @@
     \subsubsection{Finance/Accounting}
       The finance/accounting department are responsible for generating tax information. This has been an issue in the past where
       receipts and order details have gone missing. The new system hopes to fix this by allowing all this data to be inputted into 
-      a database. From this the department will be able generate earning reports and profits and loss statements. This help ACME 
-      towards business goal 4.
+      a database. Finance/accounting will be able generate earning reports and profits and loss statements from this.
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/finance.png}
@@ -87,10 +85,10 @@
       \end{figure}
       
     \subsubsection{Mechanic}
-      The mechanic is in charge of making sure the cars are suitable to rent. For this reasons a mechanic can service a car, and repair cars
-      when needed. In some cases parts will have to ordered in when repairing a car, so an optional include has been added to generate a receipt
+      The mechanic is in charge of making sure the cars are suitable to rent/drive. Mechanics can service a car, and repair cars
+      when needed. Sometimes parts will be ordered when repairing a car, so an optional action has been added to generate a receipt
       for these costs. This would currently be done paper based, however this could be rolled into the new system to make all expenses/profits 
-      being in the same place, making it easier to do things such as tax returns and profit/loss accounts.
+      stored in the same place, making it easier to do things such as tax returns and profit/loss accounts.
       \begin{figure}[H]
         \centering
         \includegraphics[width=10cm]{diagrams/useCase/mechanic.png}

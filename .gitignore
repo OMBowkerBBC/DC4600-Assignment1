@@ -4,6 +4,7 @@
 /diagrams/sequence/*.png
 /diagrams/useCase/*.png
 todo
+~$main.pdf
 
 # Latex artifacts
 *.aux
